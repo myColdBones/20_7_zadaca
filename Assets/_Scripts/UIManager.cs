@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PressEForDoorGameObject;
     [SerializeField] private TMP_Text scoreTMP;
     [SerializeField] private TMP_Text highscoreTMP;
+    [SerializeField] private GameObject Gameover;
 
     private int score;
     private int highscore;
@@ -16,13 +18,13 @@ public class UIManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        PressEForDoorGameObject.SetActive(false);
         scoreTMP.gameObject.SetActive(false);
         highscoreTMP.gameObject.SetActive(false);
+        Gameover.SetActive(false);
     }
     private void Start()
     {
-
-
         highscore = PlayerPrefs.GetInt(highScore_Key, 0);
         UpdateScores();
     }
@@ -58,5 +60,15 @@ public class UIManager : MonoBehaviour
     {
         score++;
         UpdateScores();
+    }
+
+    public void ShowGameOber()
+    {
+        Gameover.SetActive(true);
+    }
+
+    public void ReturnToMenuButtonPressed()
+    {
+        SceneManager.LoadScene("mainMenu");
     }
 }

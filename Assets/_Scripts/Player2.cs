@@ -44,6 +44,7 @@ public class Player2 : MonoBehaviour
         health--;
         if (health <= 0)
         {
+            UIManager.Instance.ShowGameOber();
             UIManager.Instance.SaveHighScoreIfPossible();
             Destroy(gameObject);
         }
